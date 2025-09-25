@@ -19,7 +19,8 @@ Covering the scope of variables, class structure, and basic data types.
 |---|---|---|
 | 1.1 | **Data Types** | [`com/oca/datatypes/DataTypes.java`](./com/oca/datatypes/DataTypes.java) |
 | 1.2 | **Operators** | [`com/oca/operators/Operators.java`](./com/oca/operators/Operators.java) |
-| 1.3 | **Control Flow** | [`com/oca/controlflow/ControlFlow.java`](./com/oca/controlflow/ControlFlow.java) |
+| 1.3 | **Bitwise Operators** | [`com/oca/operators/BitwiseOperators.java`](./com/oca/operators/BitwiseOperators.java) |
+| 1.4 | **Control Flow** | [`com/oca/controlflow/ControlFlow.java`](./com/oca/controlflow/ControlFlow.java) |
 
 ### 2. Working With Java Data Types
 Manipulation of strings, arrays, and other data structures.
