@@ -1,10 +1,12 @@
 package com.oca.lambdas;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * This class demonstrates Lambda Expressions and Functional Interfaces, key features of Java 8.
@@ -37,7 +39,7 @@ public class LambdaAndFunctionalInterfaces {
 
 
         System.out.println("\n--- Built-in Functional Interfaces ---");
-        List<String> names = new ArrayList<>(List.of("Alice", "Bob", "Charlie", "David"));
+        List<String> names = new ArrayList<>(Arrays.asList("Alice", "Bob", "Charlie", "David"));
 
         // 1. Predicate<T>: Represents a predicate (boolean-valued function) of one argument.
         // Method: boolean test(T t)
@@ -60,5 +62,36 @@ public class LambdaAndFunctionalInterfaces {
         Consumer<String> printName = (name) -> System.out.println("Hello, " + name);
         System.out.println("Printing names using a Consumer:");
         names.forEach(printName);
+
+
+        // 4. Supplier<T>: Represents a supplier of results. Takes no argument, returns a value.
+        // Method: T get()
+        System.out.println("\n--- Supplier<T> ---");
+        Supplier<String> greeting = () -> "Hello from Supplier!";
+        System.out.println(greeting.get());
+
+        Supplier<List<String>> listFactory = () -> new ArrayList<>();
+        List<String> newList = listFactory.get();
+        newList.add("Created by Supplier");
+        System.out.println("List from Supplier: " + newList);
+
+
+        // 5. Method References (shorthand for lambdas that just call a single method)
+        System.out.println("\n--- Method References ---");
+        List<String> colors = Arrays.asList("red", "green", "blue");
+
+        // Reference to an instance method of an arbitrary object: String::toUpperCase
+        // Equivalent to: (s) -> s.toUpperCase()
+        colors.stream().map(String::toUpperCase).forEach(System.out::println);
+
+        // Reference to a static method: Integer::parseInt
+        // Equivalent to: (s) -> Integer.parseInt(s)
+        List<String> numberStrings = Arrays.asList("1", "2", "3");
+        numberStrings.stream().map(Integer::parseInt).forEach(System.out::println);
+
+        // Reference to an instance method of a specific object: System.out::println
+        // Equivalent to: (s) -> System.out.println(s)
+        System.out.println("Printing with method reference:");
+        colors.forEach(System.out::println);
     }
 }

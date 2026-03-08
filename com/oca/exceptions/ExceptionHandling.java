@@ -25,7 +25,12 @@ public class ExceptionHandling {
 
         System.out.println("\n--------------------\n");
 
-        // 4. Using the 'throws' keyword
+        // 4. Multi-catch block (Java 7+)
+        demonstrateMultiCatch();
+
+        System.out.println("\n--------------------\n");
+
+        // 5. Using the 'throws' keyword
         try {
             findFile();
         } catch (IOException e) {
@@ -79,6 +84,24 @@ public class ExceptionHandling {
             // The 'finally' block is always executed, whether an exception occurred or not.
             // It's often used for cleanup, like closing files or database connections.
             System.out.println("This is the 'finally' block. It always runs!");
+        }
+    }
+
+    public static void demonstrateMultiCatch() {
+        System.out.println("Demonstrating multi-catch block (Java 7+)...");
+        String[] data = {"10", null, "abc"};
+
+        for (String item : data) {
+            try {
+                // Could throw NullPointerException (null.length()) or
+                // NumberFormatException (Integer.parseInt("abc"))
+                int result = 100 / Integer.parseInt(item);
+                System.out.println("  100 / " + item + " = " + result);
+            } catch (ArithmeticException | NumberFormatException | NullPointerException e) {
+                // Multi-catch: the variable 'e' is implicitly final
+                // Exception types must not be related (no parent-child)
+                System.out.println("  Caught " + e.getClass().getSimpleName() + ": " + e.getMessage());
+            }
         }
     }
 

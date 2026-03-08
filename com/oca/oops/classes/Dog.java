@@ -11,9 +11,22 @@ public class Dog {
     String breed;
     int age;
 
-    // Constructor - a special method to initialize a new object
+    // No-arg constructor - uses this() to chain to the parameterized constructor
+    public Dog() {
+        this("Unknown", "Mixed", 0);  // must be the first statement
+        System.out.println("No-arg constructor called (via chaining)");
+    }
+
+    // Two-arg constructor - chains to the three-arg constructor with default age
+    public Dog(String name, String breed) {
+        this(name, breed, 0);  // this() must be the first statement
+        System.out.println("Two-arg constructor called (via chaining)");
+    }
+
+    // Three-arg constructor - the "primary" constructor all others chain to
     public Dog(String name, String breed, int age) {
-        System.out.println("Dog object created with name: " + name);
+        // If neither this() nor super() is specified, compiler inserts super() here
+        System.out.println("Three-arg constructor called with name: " + name);
         this.name = name;
         this.breed = breed;
         this.age = age;
@@ -52,5 +65,15 @@ public class Dog {
         Dog anotherDog = new Dog("Lucy", "Poodle", 5);
         System.out.println("Another dog's details: " + anotherDog.getDetails());
         anotherDog.bark();
+
+        System.out.println("\n--- Constructor Chaining with this() ---");
+
+        // No-arg constructor chains to three-arg constructor
+        Dog defaultDog = new Dog();
+        System.out.println("Default dog: " + defaultDog.getDetails());
+
+        // Two-arg constructor chains to three-arg constructor
+        Dog twoArgDog = new Dog("Max", "Beagle");
+        System.out.println("Two-arg dog: " + twoArgDog.getDetails());
     }
 }

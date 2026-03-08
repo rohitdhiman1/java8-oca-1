@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
@@ -62,5 +63,27 @@ public class DateTimeAPI {
         LocalDate parsedDate = LocalDate.parse(dateString, parseFormatter);
         System.out.println("Parsed Date: " + parsedDate);
         System.out.println("Day of the week of parsed date: " + parsedDate.getDayOfWeek());
+
+
+        // 6. Period - represents a date-based amount (years, months, days)
+        System.out.println("\n--- Period ---");
+        LocalDate startDate = LocalDate.of(2024, 1, 1);
+        LocalDate endDate = LocalDate.of(2024, 9, 15);
+
+        // Period.between calculates the difference between two dates
+        Period between = Period.between(startDate, endDate);
+        System.out.println("Period between " + startDate + " and " + endDate + ": " + between);
+        System.out.println("  Years: " + between.getYears() + ", Months: " + between.getMonths() + ", Days: " + between.getDays());
+
+        // Creating periods with factory methods
+        Period oneYear = Period.ofYears(1);
+        Period threeMonths = Period.ofMonths(3);
+        Period tenDays = Period.ofDays(10);
+        Period custom = Period.of(1, 6, 15); // 1 year, 6 months, 15 days
+
+        System.out.println("Today + 1 year: " + today.plus(oneYear));
+        System.out.println("Today + 3 months: " + today.plus(threeMonths));
+        System.out.println("Today + 10 days: " + today.plus(tenDays));
+        System.out.println("Today + custom (1y 6m 15d): " + today.plus(custom));
     }
 }

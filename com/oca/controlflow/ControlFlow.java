@@ -67,6 +67,23 @@ public class ControlFlow {
             j++;
         } while (j < 5);
 
+        System.out.println("\n--- Switch with String (Java 7+) ---");
+        String command = "start";
+        switch (command) {
+            case "start":
+                System.out.println("Starting the engine...");
+                break;
+            case "stop":
+                System.out.println("Stopping the engine...");
+                break;
+            case "pause":
+                System.out.println("Pausing...");
+                break;
+            default:
+                System.out.println("Unknown command: " + command);
+                break;
+        }
+
         System.out.println("\n--- Break and Continue ---");
         for (int k = 0; k < 10; k++) {
             if (k == 7) {
