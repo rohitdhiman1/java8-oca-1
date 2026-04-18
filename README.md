@@ -22,6 +22,19 @@ Covering the scope of variables, class structure, and basic data types.
 | 1.3 | **Bitwise Operators** | [`com/oca/operators/BitwiseOperators.java`](./com/oca/operators/BitwiseOperators.java) |
 | 1.4 | **Control Flow** | [`com/oca/controlflow/ControlFlow.java`](./com/oca/controlflow/ControlFlow.java) |
 
+#### Primitive Data Types Reference
+
+| Type | Size | Range | Default |
+|------|------|-------|---------|
+| `byte` | 8-bit | -2^7 to 2^7-1 (-128 to 127) | `0` |
+| `short` | 16-bit | -2^15 to 2^15-1 (-32,768 to 32,767) | `0` |
+| `int` | 32-bit | -2^31 to 2^31-1 | `0` |
+| `long` | 64-bit | -2^63 to 2^63-1 | `0L` |
+| `float` | 32-bit IEEE 754 | ~±3.4 × 10^38 (7 decimal digits) | `0.0f` |
+| `double` | 64-bit IEEE 754 | ~±1.8 × 10^308 (15 decimal digits) | `0.0d` |
+| `char` | 16-bit unsigned | 0 to 2^16-1 (0 to 65,535) | `'\u0000'` |
+| `boolean` | JVM-dependent | `true` or `false` (2^1 possible values) | `false` |
+
 ### 2. Working With Java Data Types
 Manipulation of strings, arrays, and other data structures.
 
