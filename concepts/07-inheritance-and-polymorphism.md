@@ -321,11 +321,16 @@ Integer num = (Integer) obj;  // ClassCastException at runtime
 
 | Topic | File |
 |---|---|
-| Inheritance hierarchy | [`Animal.java`](../com/oca/oops/inheritance/Animal.java) |
-| Subclass example | [`Labrador.java`](../com/oca/oops/inheritance/Labrador.java) |
+| Base class (level 1) | [`Animal.java`](../com/oca/oops/inheritance/Animal.java) |
+| Mid-level subclass, `super.method()` (level 2) | [`Dog.java`](../com/oca/oops/inheritance/Dog.java) |
+| Leaf subclass, 3-level chain (level 3) | [`Labrador.java`](../com/oca/oops/inheritance/Labrador.java) |
 | Method overloading | [`MethodOverloading.java`](../com/oca/oops/polymorphism/MethodOverloading.java) |
-| Method overriding | [`MethodOverriding.java`](../com/oca/oops/polymorphism/MethodOverriding.java) |
+| Method overriding, dynamic dispatch | [`MethodOverriding.java`](../com/oca/oops/polymorphism/MethodOverriding.java) |
+| Upcasting, downcasting, `instanceof` | [`ReferenceCasting.java`](../com/oca/casting/ReferenceCasting.java) |
+| `toString()`, `equals()`, `hashCode()` | [`ObjectMethods.java`](../com/oca/oops/polymorphism/ObjectMethods.java) |
+| Static hiding, field hiding, immutable objects | [`OopExamTraps.java`](../com/oca/oops/polymorphism/OopExamTraps.java) |
 | Abstract class | [`Shape.java`](../com/oca/oops/abstraction/Shape.java) |
-| Concrete subclass | [`Circle.java`](../com/oca/oops/abstraction/Circle.java) |
-| Interface | [`Drawable.java`](../com/oca/oops/abstraction/Drawable.java) |
-| Casting examples | [`ReferenceCasting.java`](../com/oca/casting/ReferenceCasting.java) |
+| Concrete subclass of abstract class | [`Circle.java`](../com/oca/oops/abstraction/Circle.java) |
+| Second concrete subclass | [`Rectangle.java`](../com/oca/oops/abstraction/Rectangle.java) |
+| Interface with default/static methods | [`Drawable.java`](../com/oca/oops/abstraction/Drawable.java) |
+| Multiple interface impl, diamond conflict | [`MultipleInterfaces.java`](../com/oca/oops/abstraction/MultipleInterfaces.java) |
