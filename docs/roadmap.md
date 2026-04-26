@@ -91,13 +91,39 @@ This roadmap stitches together all concepts, source code, and mock exams in a st
   - Compile-time vs runtime polymorphism
   - Upcasting, downcasting, instanceof
   - Abstract classes vs interfaces
-- **Code Lab:**
-  - [Animal.java](../com/oca/oops/inheritance/Animal.java) / [Labrador.java](../com/oca/oops/inheritance/Labrador.java) - Inheritance hierarchy
-  - [MethodOverloading.java](../com/oca/oops/polymorphism/MethodOverloading.java) - Compile-time polymorphism
-  - [MethodOverriding.java](../com/oca/oops/polymorphism/MethodOverriding.java) - Runtime polymorphism
-  - [Shape.java](../com/oca/oops/abstraction/Shape.java) / [Circle.java](../com/oca/oops/abstraction/Circle.java) - Abstract classes
-  - [Drawable.java](../com/oca/oops/abstraction/Drawable.java) - Interfaces
-  - [ReferenceCasting.java](../com/oca/casting/ReferenceCasting.java) - Upcasting, downcasting, instanceof
+  - Overriding Object methods (toString, equals, hashCode)
+  - Multiple interface implementation
+
+#### 8a - Inheritance (read in order)
+
+| # | File | What it teaches |
+|---|---|---|
+| 1 | [Animal.java](../com/oca/oops/inheritance/Animal.java) | Base class — fields, constructor, instance methods |
+| 2 | [Dog.java](../com/oca/oops/inheritance/Dog.java) | Mid-level subclass — `extends`, `super()`, overrides with `super.method()` call |
+| 3 | [Labrador.java](../com/oca/oops/inheritance/Labrador.java) | Leaf subclass — 3-level chain, full constructor order, multiple overrides |
+
+> **Chain:** `Animal` → `Dog` → `Labrador`
+> **Key pattern in Dog.java:** `super.makeSound()` — how to extend (not replace) a parent method
+
+#### 8b - Polymorphism (read in order)
+
+| # | File | What it teaches |
+|---|---|---|
+| 1 | [MethodOverloading.java](../com/oca/oops/polymorphism/MethodOverloading.java) | Compile-time polymorphism — same name, different params |
+| 2 | [MethodOverriding.java](../com/oca/oops/polymorphism/MethodOverriding.java) | Runtime polymorphism — dynamic dispatch, upcasting |
+| 3 | [ReferenceCasting.java](../com/oca/casting/ReferenceCasting.java) | Upcasting (implicit), downcasting (explicit), `instanceof`, `ClassCastException` |
+| 4 | [ObjectMethods.java](../com/oca/oops/polymorphism/ObjectMethods.java) | Overriding `toString()`, `equals()`, `hashCode()` from `Object` |
+| 5 | [OopExamTraps.java](../com/oca/oops/polymorphism/OopExamTraps.java) | **Exam traps:** static method hiding, field hiding, immutable objects |
+
+#### 8c - Abstraction (read in order)
+
+| # | File | What it teaches |
+|---|---|---|
+| 1 | [Shape.java](../com/oca/oops/abstraction/Shape.java) | Abstract class — cannot instantiate, abstract + concrete methods |
+| 2 | [Circle.java](../com/oca/oops/abstraction/Circle.java) | Concrete subclass — must implement all abstract methods |
+| 3 | [Rectangle.java](../com/oca/oops/abstraction/Rectangle.java) | Second concrete subclass — polymorphism via abstract type |
+| 4 | [Drawable.java](../com/oca/oops/abstraction/Drawable.java) | Interface — abstract methods, default methods, static methods (Java 8) |
+| 5 | [MultipleInterfaces.java](../com/oca/oops/abstraction/MultipleInterfaces.java) | Implementing multiple interfaces, diamond default method conflict resolution |
 
 ---
 
@@ -160,16 +186,21 @@ This roadmap stitches together all concepts, source code, and mock exams in a st
 | `collections` | [CollectionsExample.java](../com/oca/collections/CollectionsExample.java) | ArrayList, collections |
 | `stringhandling` | [StringHandling.java](../com/oca/stringhandling/StringHandling.java) | String, StringBuilder |
 | `passbyvalue` | [PassByValue.java](../com/oca/passbyvalue/PassByValue.java) | Pass-by-value semantics |
-| `oops/classes` | [Dog.java](../com/oca/oops/classes/Dog.java) | Class structure |
-| `oops/encapsulation` | [Person.java](../com/oca/oops/encapsulation/Person.java) | Encapsulation |
-| `oops/inheritance` | [Animal.java](../com/oca/oops/inheritance/Animal.java) | Base class |
-| `oops/inheritance` | [Labrador.java](../com/oca/oops/inheritance/Labrador.java) | Inheritance |
-| `oops/polymorphism` | [MethodOverloading.java](../com/oca/oops/polymorphism/MethodOverloading.java) | Overloading |
-| `oops/polymorphism` | [MethodOverriding.java](../com/oca/oops/polymorphism/MethodOverriding.java) | Overriding |
+| `oops/classes` | [Dog.java](../com/oca/oops/classes/Dog.java) | Class structure, fields, constructor chaining |
+| `oops/encapsulation` | [Person.java](../com/oca/oops/encapsulation/Person.java) | Encapsulation, private fields, getters/setters |
+| `oops/inheritance` | [Animal.java](../com/oca/oops/inheritance/Animal.java) | Base class (level 1 of 3) |
+| `oops/inheritance` | [Dog.java](../com/oca/oops/inheritance/Dog.java) | Mid-level subclass, `super.method()` (level 2 of 3) |
+| `oops/inheritance` | [Labrador.java](../com/oca/oops/inheritance/Labrador.java) | Leaf subclass, 3-level constructor chain (level 3 of 3) |
+| `oops/polymorphism` | [MethodOverloading.java](../com/oca/oops/polymorphism/MethodOverloading.java) | Compile-time polymorphism |
+| `oops/polymorphism` | [MethodOverriding.java](../com/oca/oops/polymorphism/MethodOverriding.java) | Runtime polymorphism, dynamic dispatch |
+| `oops/polymorphism` | [ObjectMethods.java](../com/oca/oops/polymorphism/ObjectMethods.java) | `toString()`, `equals()`, `hashCode()` overrides |
+| `oops/polymorphism` | [OopExamTraps.java](../com/oca/oops/polymorphism/OopExamTraps.java) | Static hiding, field hiding, immutable objects |
 | `oops/abstraction` | [Shape.java](../com/oca/oops/abstraction/Shape.java) | Abstract class |
-| `oops/abstraction` | [Circle.java](../com/oca/oops/abstraction/Circle.java) | Abstract class impl |
-| `oops/abstraction` | [Drawable.java](../com/oca/oops/abstraction/Drawable.java) | Interface |
-| `casting` | [ReferenceCasting.java](../com/oca/casting/ReferenceCasting.java) | Upcasting, downcasting, instanceof |
+| `oops/abstraction` | [Circle.java](../com/oca/oops/abstraction/Circle.java) | Concrete subclass of abstract class |
+| `oops/abstraction` | [Rectangle.java](../com/oca/oops/abstraction/Rectangle.java) | Second concrete subclass |
+| `oops/abstraction` | [Drawable.java](../com/oca/oops/abstraction/Drawable.java) | Interface with default/static methods |
+| `oops/abstraction` | [MultipleInterfaces.java](../com/oca/oops/abstraction/MultipleInterfaces.java) | Multiple interface implementation, diamond conflict |
+| `casting` | [ReferenceCasting.java](../com/oca/casting/ReferenceCasting.java) | Upcasting, downcasting, `instanceof`, `ClassCastException` |
 | `statics` | [StaticExample.java](../com/oca/statics/StaticExample.java) | Static keyword |
 | `finalkeyword` | [FinalKeywordExample.java](../com/oca/finalkeyword/FinalKeywordExample.java) | Final keyword |
 | `exceptions` | [ExceptionHandling.java](../com/oca/exceptions/ExceptionHandling.java) | try-catch-finally |
