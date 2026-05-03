@@ -19,6 +19,66 @@
 - `char` is **unsigned** -- it holds values 0 to 65,535 (Unicode characters).
 - Underscores are allowed in numeric literals for readability: `1_000_000`. They cannot appear at the start, end, or adjacent to a decimal point.
 
+## Memory Layout: Where Variables Live
+
+All memory regions live in **RAM**. The JVM divides it into distinct regions:
+
+```
+RAM
+─────────────────────────────────────
+| Metaspace (Method Area)           |  ← class metadata, static variables
+|─────────────────────────────────── |
+| Heap                              |  ← all objects (new ...), instance fields
+|                                   |
+|    (free space)                   |
+|                                   |
+| Stack                             |  ← method frames, local variables
+─────────────────────────────────────
+```
+
+### Where does each variable type live?
+
+| Variable | Primitive | Reference type |
+|---|---|---|
+| **Local** (inside a method) | Value → **stack** | Reference → **stack**, Object → **heap** |
+| **Instance** (field of a class) | Value → **heap** (inside the object) | Reference → **heap** (inside the object), Object → **heap** |
+| **Static** (class-level field) | Value → **Metaspace** | Reference → **Metaspace**, Object → **heap** |
+
+**Rules to remember:**
+- **Objects always live on the heap. No exceptions.**
+- Where the variable itself lives depends on its **scope** — local → stack, instance → heap, static → Metaspace.
+- Static fields are shared across all instances — there is only **one copy** per class, loaded when the class is first loaded by the JVM.
+
+### Example
+
+```java
+public class Dog {
+    static int count = 0;    // Metaspace — shared across all Dog objects
+    String name;             // reference on heap (inside object), "Buddy" String object on heap
+    int age;                 // value on heap (inside object)
+
+    public void bark() {
+        int volume = 10;     // local primitive → stack
+        String sound = "woof"; // local reference → stack, "woof" object → heap
+    }
+}
+```
+
+### NullPointerException and null
+
+- A reference variable holding `null` means it points to **no object**.
+- NPE occurs when you call a method or access a field on a `null` reference (anything to the left of the dot is `null`).
+- String concatenation with `null` is **safe** — it just prints the word `"null"`.
+
+```java
+String s = null;
+s.length();              // NPE — calling method on null
+System.out.println(s);  // safe — prints "null"
+"Hello " + s;           // safe — results in "Hello null"
+```
+
+---
+
 ## Primitive vs Reference Types
 
 ```mermaid
