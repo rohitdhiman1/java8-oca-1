@@ -45,7 +45,8 @@ Manipulation of strings, arrays, and other data structures.
 | 2.2 | **String Handling** | [`com/oca/stringhandling/StringHandling.java`](./com/oca/stringhandling/StringHandling.java) |
 | 2.3 | **Arrays** | [`com/oca/arrays/ArraysExample.java`](./com/oca/arrays/ArraysExample.java) |
 | 2.4 | **Type Conversions** | [`com/oca/conversions/Conversions.java`](./com/oca/conversions/Conversions.java) |
-| 2.5 | **Collections Framework** | [`com/oca/collections/CollectionsExample.java`](./com/oca/collections/CollectionsExample.java) |
+| 2.5 | **Wrapper Classes** | [`com/oca/wrapperclasses/WrapperClasses.java`](./com/oca/wrapperclasses/WrapperClasses.java) |
+| 2.6 | **Collections Framework** | [`com/oca/collections/CollectionsExample.java`](./com/oca/collections/CollectionsExample.java) |
 | 2.6 | **Generics** | [`com/oca/generics/GenericsExample.java`](./com/oca/generics/GenericsExample.java) |
 
 ### 3. Using Methods and Encapsulation
