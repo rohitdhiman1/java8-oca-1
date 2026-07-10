@@ -18,7 +18,8 @@ Covering the scope of variables, class structure, and basic data types.
 | # | Topic | File Path |
 |---|---|---|
 | 1.1 | **Data Types** | [`com/oca/datatypes/DataTypes.java`](./com/oca/datatypes/DataTypes.java) |
-| 1.2 | **Operators** | [`com/oca/operators/Operators.java`](./com/oca/operators/Operators.java) |
+| 1.2 | **char ↔ int Interaction** | [`com/oca/datatypes/CharIntInteraction.java`](./com/oca/datatypes/CharIntInteraction.java) |
+| 1.3 | **Operators** | [`com/oca/operators/Operators.java`](./com/oca/operators/Operators.java) |
 | 1.3 | **Bitwise Operators** | [`com/ocp/operators/BitwiseOperators.java`](./com/ocp/operators/BitwiseOperators.java) |
 | 1.4 | **Control Flow** | [`com/ocp/controlflow/ControlFlow.java`](./com/oca/controlflow/ControlFlow.java) |
 
