@@ -218,6 +218,11 @@ This roadmap stitches together all concepts, source code, and mock exams in a st
 | `concurrency` | [ConcurrencyExample.java](../com/ocp/concurrency/ConcurrencyExample.java) | Synchronized |
 | `multithreading` | [MultithreadingExample.java](../com/ocp/multithreading/MultithreadingExample.java) | Threads |
 | `operators` | [BitwiseOperators.java](../com/ocp/operators/BitwiseOperators.java) | Bitwise operators |
+| `collections` | [CollectionsCheatSheet.java](../com/ocp/collections/CollectionsCheatSheet.java) | Collections methods for LeetCode-style assessments |
+
+### Interview Prep (Bonus)
+
+- [Collections Cheat Sheet](collections-cheatsheet.md) - Quick-revision reference for HashMap, HashSet, ArrayList, Stack, ArrayDeque, PriorityQueue, TreeMap, StringBuilder, Arrays/Collections utilities - with the runnable companion above
 
 ---
 
