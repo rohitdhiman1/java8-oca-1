@@ -229,7 +229,32 @@ System.out.println(c.equals(d)); // true  (always compares values)
 
 **Rule:** Always use `.equals()` for comparing wrapper objects. The `==` operator compares **references**, not values (except when the cache kicks in).
 
-The cache also applies to `Byte`, `Short`, `Long`, and `Character` (for values 0-127).
+### Caching Across Other Wrapper Classes
+
+The same `valueOf(...)` caching mechanism (triggered by autoboxing) applies to every wrapper class except `Float` and `Double`:
+
+| Wrapper | Cached range | Notes |
+|---|---|---|
+| `Byte` | all values (-128 to 127) | `byte`'s entire range fits in the cache |
+| `Short` | -128 to 127 | same range as `Integer` |
+| `Integer` | -128 to 127 | guaranteed minimum; extendable via `-XX:AutoBoxCacheMax` JVM flag |
+| `Long` | -128 to 127 | same range, despite `long` having a much bigger range overall |
+| `Character` | 0 to 127 | covers ASCII only (`char` is unsigned, no negative values) |
+| `Boolean` | both values | `Boolean.TRUE` / `Boolean.FALSE` are always cached |
+| `Float` | never cached | floating-point equality is inherently fuzzy |
+| `Double` | never cached | same reasoning as `Float` |
+
+```java
+Boolean b1 = true;
+Boolean b2 = true;
+System.out.println(b1 == b2);   // true -- Boolean.TRUE is always the same cached constant
+
+Byte x = 100;
+Byte y = 100;
+System.out.println(x == y);     // true -- byte's whole range (-128 to 127) is cached
+```
+
+**Exam point:** `new Integer(...)`, `new Boolean(...)`, etc. (explicit `new`, valid but deprecated in Java 8+) always bypass the cache and create a fresh object, regardless of value.
 
 ## String Pool Concept
 
