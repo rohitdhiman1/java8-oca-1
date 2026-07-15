@@ -1,7 +1,7 @@
 # Java Collections Cheat Sheet (LeetCode / Assessment Prep)
 
 > Quick-revision reference for coding assessments. Every snippet is Java 8 compatible.
-> **Runnable companion:** [CollectionsCheatSheet.java](../com/ocp/collections/CollectionsCheatSheet.java) — run it to see every method's output.
+> **Runnable companion:** [CollectionsCheatSheet.java](com/ocp/collections/CollectionsCheatSheet.java) — run it to see every method's output.
 >
 > ⚠️ Beyond OCA (1Z0-808) scope — the exam only tests `ArrayList` in depth. This file is for interview/LeetCode prep.
 
