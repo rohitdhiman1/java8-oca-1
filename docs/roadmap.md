@@ -28,6 +28,55 @@ This roadmap stitches together all concepts, source code, and mock exams in a st
   - [ObjectLifecycle.java](../com/oca/objectlifecycle/ObjectLifecycle.java) - GC eligibility, island of isolation
   - [Conversions.java](../com/oca/conversions/Conversions.java) - Type conversions and casting
 
+#### Conversion Mindmap: The 3-Verb Pattern
+
+Every wrapper class (`Integer`, `Long`, `Double`, `Boolean`, `Byte`, `Short`, `Character`) follows the same naming pattern — learn it once, it applies everywhere:
+
+```mermaid
+mindmap
+  root((Type Conversions))
+    String to Primitive
+      "parseX methods"
+        "Integer.parseInt"
+        "Double.parseDouble"
+        "Boolean.parseBoolean"
+        "Long.parseLong"
+      "returns primitive"
+      "throws NumberFormatException on bad input"
+    String to Wrapper
+      "valueOf(String)"
+        "Integer.valueOf"
+        "Double.valueOf"
+      "returns wrapper object"
+    Primitive to Wrapper
+      "valueOf(primitive) or autoboxing"
+        "Integer.valueOf(42)"
+        "Integer boxed = 42"
+      "Integer cache -128 to 127"
+    Wrapper to Primitive
+      "xValue() instance methods"
+        "intValue"
+        "longValue"
+        "doubleValue"
+      "autounboxing: int i = wrapInt"
+      "NPE risk if wrapper is null"
+    Anything to String
+      "String.valueOf(x)"
+      "x.toString()"
+      "x + concatenation trick"
+    Primitive Widening or Narrowing
+      "Widening is automatic"
+        "byte to short to int to long to float to double"
+      "Narrowing needs explicit cast"
+        "(int) doubleVal truncates"
+        "(byte) intVal overflow wraps"
+```
+
+**The 3 verbs to remember:**
+- **`parse___`** → always returns a **primitive**
+- **`valueOf`** → always returns a **wrapper object**
+- **`___Value()`** (called on a wrapper instance) → always returns a **primitive**
+
 ### Step 3 - Operators and Decision Constructs
 - **Concept:** [03 - Operators and Decisions](../concepts/03-operators-and-decisions.md)
   - Operator precedence, arithmetic, unary, relational, logical
