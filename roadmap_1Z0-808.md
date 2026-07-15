@@ -28,49 +28,48 @@ This roadmap stitches together all concepts, source code, and mock exams in a st
   - [ObjectLifecycle.java](com/oca/objectlifecycle/ObjectLifecycle.java) - GC eligibility, island of isolation
   - [Conversions.java](com/oca/conversions/Conversions.java) - Type conversions and casting
 
-#### Conversion Mindmap: The 3-Verb Pattern
+#### Conversion Cheat Sheet: The 3-Verb Pattern
 
-Every wrapper class (`Integer`, `Long`, `Double`, `Boolean`, `Byte`, `Short`, `Character`) follows the same naming pattern — learn it once, it applies everywhere:
+Every wrapper class follows the **same three method patterns** — learn the pattern once instead of memorizing each class's method names separately.
 
-```mermaid
-mindmap
-  root((Type Conversions))
-    String to Primitive
-      "parseX methods"
-        "Integer.parseInt"
-        "Double.parseDouble"
-        "Boolean.parseBoolean"
-        "Long.parseLong"
-      "returns primitive"
-      "throws NumberFormatException on bad input"
-    String to Wrapper
-      "valueOf(String)"
-        "Integer.valueOf"
-        "Double.valueOf"
-      "returns wrapper object"
-    Primitive to Wrapper
-      "valueOf(primitive) or autoboxing"
-        "Integer.valueOf(42)"
-        "Integer boxed = 42"
-      "Integer cache -128 to 127"
-    Wrapper to Primitive
-      "xValue() instance methods"
-        "intValue"
-        "longValue"
-        "doubleValue"
-      "autounboxing: int i = wrapInt"
-      "NPE risk if wrapper is null"
-    Anything to String
-      "String.valueOf(x)"
-      "x.toString()"
-      "x + concatenation trick"
-    Primitive Widening or Narrowing
-      "Widening is automatic"
-        "byte to short to int to long to float to double"
-      "Narrowing needs explicit cast"
-        "(int) doubleVal truncates"
-        "(byte) intVal overflow wraps"
-```
+**1. The pattern (applies to every wrapper class):**
+
+| Direction | Method pattern | Returns | Example |
+|---|---|---|---|
+| String → primitive | `Type.parseType(String)` | primitive | `Integer.parseInt("42")` |
+| String → Wrapper | `Type.valueOf(String)` | Wrapper object | `Integer.valueOf("42")` |
+| primitive → Wrapper | `Type.valueOf(primitive)` or autoboxing | Wrapper object | `Integer.valueOf(42)` / `Integer x = 42;` |
+| Wrapper → primitive | `wrapper.typeValue()` or autounboxing | primitive | `wrapInt.intValue()` / `int i = wrapInt;` |
+| anything → String | `String.valueOf(x)` or `x.toString()` | String | `String.valueOf(42)` |
+
+**2. Per-class quick reference** — see [WrapperClasses.java](com/oca/wrapperclasses/WrapperClasses.java) for runnable versions of every row:
+
+| Wrapper | parseX(String) → primitive | valueOf(String) → Wrapper | xValue() → primitive |
+|---|---|---|---|
+| `Integer` | `parseInt` | `valueOf` | `intValue` |
+| `Long` | `parseLong` | `valueOf` | `longValue` |
+| `Double` | `parseDouble` | `valueOf` | `doubleValue` |
+| `Float` | `parseFloat` | `valueOf` | `floatValue` |
+| `Short` | `parseShort` | `valueOf` | `shortValue` |
+| `Byte` | `parseByte` | `valueOf` | `byteValue` |
+| `Boolean` | `parseBoolean` | `valueOf` | `booleanValue` |
+| `Character` | *(none — no parseChar)* | `valueOf(char)` | `charValue` |
+
+**3. Traps to remember alongside the table:**
+
+| Trap | Rule |
+|---|---|
+| Invalid string parsed | `parseX`/`valueOf(String)` throw `NumberFormatException` (e.g. `Integer.parseInt("abc")`) |
+| Unboxing a `null` wrapper | Throws `NullPointerException` (e.g. `Integer i = null; int x = i;`) |
+| Integer cache | `Integer`/`Short`/`Long`/`Byte` cache **-128 to 127**; `Character` caches **0-127**; `Boolean` always caches both values; `Float`/`Double` **never** cache |
+| `==` on wrapper objects | Compares references, not values — use `.equals()` instead |
+
+**4. Primitive widening / narrowing** (separate from wrapper conversions — no method calls involved):
+
+| Direction | Rule | Example |
+|---|---|---|
+| Widening | Automatic, no cast needed | `byte → short → int → long → float → double` |
+| Narrowing | Requires explicit cast, may lose data | `(int) 9.99` truncates to `9`; `(byte) 200` overflows/wraps |
 
 **The 3 verbs to remember:**
 - **`parse___`** → always returns a **primitive**
