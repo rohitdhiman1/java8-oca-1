@@ -51,39 +51,94 @@ public int add(int a, int b, int c) { return a + b + c; } // valid overload
 
 ## Pass-by-Value Semantics
 
-Java is **always pass-by-value**. There is no pass-by-reference. However, when passing objects, the **value of the reference** (the memory address) is copied.
+Java is **always pass-by-value**. There is no pass-by-reference.
 
-```mermaid
-flowchart LR
-    subgraph "Primitive Pass-by-Value"
-        A["int x = 10"] -->|"copy of 10"| B["method param: int y = 10"]
-        B -->|"y = 20 (changes only y)"| C["x is still 10"]
-    end
+### 1. There is one rule, not two
+
+Primitives and objects are **not two different mechanisms**. Java has a single rule:
+
+> **Copy the value of the variable into the parameter slot.**
+
+A **slot** is the parameter's own storage location — a fresh variable created when the method is invoked, discarded when it returns. The only thing that differs between primitives and objects is *what the variable holds*:
+
+| Variable holds | What gets copied |
+|---|---|
+| Primitive — `int x = 10` | The number `10` |
+| Reference — `int[] nums` | The reference `0xABC` |
+
+Avoid saying *"purely"* pass-by-value, or contrasting it with "but for objects it behaves like...". That phrasing implies you believe there is an exception. **There is none.** The rule is uniform; only the payload differs.
+
+> **Spec reference:** JLS §8.4.1 — *"the values of the actual argument expressions initialize newly created parameter variables."* JLS §4.3.1 defines a reference variable's value as a *reference value*.
+>
+> "Address" and `0xABC` below are a **teaching model**, not a guarantee: the JVM may use compressed oops or handles, or remove the object entirely via escape analysis. Say "the reference" if pressed.
+
+### 2. Mutation vs. reassignment
+
+Both outcomes below follow from the one rule — same type, same method signature, opposite results:
+
+```java
+static void mutate(int[] nums)   { nums[0] = 99; }        // caller sees 99
+static void reassign(int[] nums) { nums = new int[5]; }   // caller sees nothing
 ```
 
-```mermaid
-flowchart LR
-    subgraph "Object Reference Pass-by-Value"
-        D["Person p = new Person()"] -->|"copy of reference (0xABC)"| E["method param: Person q = 0xABC"]
-        E -->|"q.setName('Bob') modifies same object"| F["p.getName() returns 'Bob'"]
-        E -->|"q = new Person() reassigns q only"| G["p still points to original object"]
-    end
-```
+| Action in the method | Effect on caller | Why |
+|---|---|---|
+| **Mutation** — `nums[0] = 99` | **Visible** | Both variables hold the same reference; you changed the object it points at |
+| **Reassignment** — `nums = new int[5]` | **Not visible** | You overwrote only the callee's slot; the caller's slot still holds the old reference |
+
+Reassignment is the half that **proves** it isn't pass-by-reference. Under true pass-by-reference, `nums = new int[5]` *would* rebind the caller's variable. It doesn't. Quote both facts together — **mutation alone is consistent with either model**, so it distinguishes nothing on its own.
+
+### 3. Why: two variables, one object
+
+Calling a method leaves you with **two independent variables pointing at the same heap object**. Mutation reaches the shared object; reassignment only overwrites one slot.
 
 ```mermaid
 graph TD
     subgraph Stack
-        S1["main(): x = 10, p = 0xABC"]
-        S2["modify(): y = 10, q = 0xABC"]
+        S1["main(): x = 10, nums = 0xABC"]
+        S2["modify(): y = 10, param = 0xABC"]
     end
     subgraph Heap
-        H1["Person object at 0xABC"]
+        H1["int[] object at 0xABC"]
     end
-    S1 -->|"p references"| H1
-    S2 -->|"q references (same object)"| H1
+    S1 -->|"nums references"| H1
+    S2 -->|"param references (same object)"| H1
 ```
 
-**Key takeaway:** Reassigning a reference parameter inside a method does **not** affect the original reference in the caller. Modifying the object's internal state through the reference **does** affect the original object.
+```mermaid
+flowchart LR
+    subgraph "Primitive: the number is copied"
+        A["int x = 10"] -->|"copy of 10"| B["param: int y = 10"]
+        B -->|"y = 20 changes only y"| C["x is still 10"]
+    end
+```
+
+```mermaid
+flowchart LR
+    subgraph "Reference: the reference is copied"
+        D["int[] nums = 0xABC"] -->|"copy of reference (0xABC)"| E["param: int[] p = 0xABC"]
+        E -->|"p[0] = 99 mutates shared object"| F["caller sees nums[0] == 99"]
+        E -->|"p = new int[5] rebinds p only"| G["caller still points at 0xABC"]
+    end
+```
+
+### 4. The classic trap: `swap()`
+
+A `swap` method **cannot work** in Java — the most common exam framing of this rule:
+
+```java
+static void swap(String x, String y) { String t = x; x = y; y = t; }  // caller unchanged
+```
+
+It only reorders the callee's two slots. This is pure reassignment, so nothing propagates.
+
+### 5. The interview answer
+
+> "Java is pass-by-value, always. The value copied is whatever the variable holds — for a primitive that's the number, for a reference type that's the address.
+>
+> So with objects, caller and callee hold two independent variables pointing at the same heap object. Mutating through either is visible to both. Reassigning either only rebinds that one slot.
+>
+> That last part is the test: under pass-by-reference, reassigning the parameter *would* rebind the caller's variable."
 
 See: [`../com/oca/passbyvalue/PassByValue.java`](../com/oca/passbyvalue/PassByValue.java)
 
