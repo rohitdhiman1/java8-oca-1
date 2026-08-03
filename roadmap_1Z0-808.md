@@ -75,12 +75,12 @@ This roadmap stitches together all concepts, source code, and mock exams in a st
 ### Step 7 - Methods and Encapsulation
 - **Concept:** [06 - Methods and Encapsulation](concepts/06-methods-and-encapsulation.md)
   - Method signatures, overloading rules
-  - Pass-by-value semantics (primitives vs references)
+  - Pass-by-value semantics (one rule, two payloads — mutation vs. reassignment)
   - Constructors, constructor chaining
   - static, final keywords
   - Access modifiers, encapsulation
 - **Code Lab:**
-  - [PassByValue.java](com/oca/passbyvalue/PassByValue.java) - Pass-by-value with primitives and objects
+  - [PassByValue.java](com/oca/passbyvalue/PassByValue.java) - Pass-by-value: mutation propagates, reassignment does not
   - [Person.java](com/oca/oops/encapsulation/Person.java) - Encapsulation, getters/setters
   - [StaticExample.java](com/oca/statics/StaticExample.java) - Static fields, methods, initializers
   - [FinalKeywordExample.java](com/oca/finalkeyword/FinalKeywordExample.java) - Final variables, methods, classes
