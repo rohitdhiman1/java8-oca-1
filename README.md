@@ -21,7 +21,7 @@ Covering the scope of variables, class structure, and basic data types.
 | 1.2 | **char ↔ int Interaction** | [`com/oca/datatypes/CharIntInteraction.java`](./com/oca/datatypes/CharIntInteraction.java) |
 | 1.3 | **Operators** | [`com/oca/operators/Operators.java`](./com/oca/operators/Operators.java) |
 | 1.3 | **Bitwise Operators** | [`com/ocp/operators/BitwiseOperators.java`](./com/ocp/operators/BitwiseOperators.java) |
-| 1.4 | **Control Flow** | [`com/ocp/controlflow/ControlFlow.java`](./com/oca/controlflow/ControlFlow.java) |
+| 1.4 | **Control Flow** | [`com/oca/controlflow/ControlFlow.java`](./com/oca/controlflow/ControlFlow.java) |
 
 #### Primitive Data Types Reference
 
@@ -47,7 +47,7 @@ Manipulation of strings, arrays, and other data structures.
 | 2.4 | **Type Conversions** | [`com/oca/conversions/Conversions.java`](./com/oca/conversions/Conversions.java) |
 | 2.5 | **Wrapper Classes** | [`com/oca/wrapperclasses/WrapperClasses.java`](./com/oca/wrapperclasses/WrapperClasses.java) |
 | 2.6 | **Collections Framework** | [`com/oca/collections/CollectionsExample.java`](./com/oca/collections/CollectionsExample.java) |
-| 2.6 | **Generics** | [`com/oca/generics/GenericsExample.java`](./com/oca/generics/GenericsExample.java) |
+| 2.6 | **Generics** | [`com/ocp/generics/GenericsExample.java`](./com/ocp/generics/GenericsExample.java) |
 
 ### 3. Using Methods and Encapsulation
 Designing classes with methods, accessors, and mutators.
@@ -57,6 +57,7 @@ Designing classes with methods, accessors, and mutators.
 | 3.1 | **Encapsulation** | [`com/oca/oops/encapsulation/Person.java`](./com/oca/oops/encapsulation/Person.java) |
 | 3.2 | **Static Keyword** | [`com/oca/statics/StaticExample.java`](./com/oca/statics/StaticExample.java) |
 | 3.3 | **Final Keyword** | [`com/oca/finalkeyword/FinalKeywordExample.java`](./com/oca/finalkeyword/FinalKeywordExample.java) |
+| 3.4 | **Pass-by-Value** (one rule; mutation vs. reassignment) | [`com/oca/passbyvalue/PassByValue.java`](./com/oca/passbyvalue/PassByValue.java) |
 
 ### 4. Inheritance and Polymorphism
 Implementing inheritance, polymorphism, and casting.
@@ -84,16 +85,16 @@ Using key classes from the Java API, including the new Java 8 features.
 |---|---|---|
 | 6.1 | **Date & Time API** | [`com/oca/datetime/DateTimeAPI.java`](./com/oca/datetime/DateTimeAPI.java) |
 | 6.2 | **Lambdas & Functional Interfaces** | [`com/oca/lambdas/LambdaAndFunctionalInterfaces.java`](./com/oca/lambdas/LambdaAndFunctionalInterfaces.java) |
-| 6.3 | **Streams API** | [`com/oca/streams/StreamsAPI.java`](./com/oca/streams/StreamsAPI.java) |
-| 6.4 | **Optional Class** | [`com/oca/optional/OptionalExample.java`](./com/oca/optional/OptionalExample.java) |
+| 6.3 | **Streams API** | [`com/ocp/streams/StreamsAPI.java`](./com/ocp/streams/StreamsAPI.java) |
+| 6.4 | **Optional Class** | [`com/ocp/optional/OptionalExample.java`](./com/ocp/optional/OptionalExample.java) |
 
 ### 7. Concurrency
 Basic thread creation and synchronization.
 
 | # | Topic | File Path |
 |---|---|---|
-| 7.1 | **Multithreading** | [`com/oca/multithreading/MultithreadingExample.java`](./com/oca/multithreading/MultithreadingExample.java) |
-| 7.2 | **Concurrency (synchronized)** | [`com/oca/concurrency/ConcurrencyExample.java`](./com/oca/concurrency/ConcurrencyExample.java) |
+| 7.1 | **Multithreading** | [`com/ocp/multithreading/MultithreadingExample.java`](./com/ocp/multithreading/MultithreadingExample.java) |
+| 7.2 | **Concurrency (synchronized)** | [`com/ocp/concurrency/ConcurrencyExample.java`](./com/ocp/concurrency/ConcurrencyExample.java) |
 
 ---
 Happy Revising!
