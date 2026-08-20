@@ -94,11 +94,26 @@ s += 1;          // COMPILES: equivalent to s = (short)(s + 1)
 int a = -8;
 // -8 in binary: 11111111 11111111 11111111 11111000
 
+a << 1;    // 11111111 11111111 11111111 11110000 = -16
+           // shifts everything left, fills the vacated rightmost bit with 0 (no sign awareness needed)
+
 a >> 1;    // 11111111 11111111 11111111 11111100 = -4
            // leftmost bit refilled with the sign bit (1) -> stays negative
 
 a >>> 1;   // 01111111 11111111 11111111 11111100 = 2147483644
            // leftmost bit refilled with 0 -> sign bit destroyed, becomes a huge positive number
+
+int p = 8;
+// 8 in binary: 00000000 00000000 00000000 00001000
+
+p << 1;    // 00000000 00000000 00000000 00010000 = 16
+           // same mechanics as the negative case -- << never looks at the sign bit
+
+p >> 1;    // 00000000 00000000 00000000 00000100 = 4
+           // leftmost bit refilled with the sign bit (0) -> same as >>>
+
+p >>> 1;   // 00000000 00000000 00000000 00000100 = 4
+           // leftmost bit refilled with 0 -> identical result to >> since sign bit was already 0
 ```
 
 For **positive** numbers, `>>` and `>>>` produce identical results -- the sign bit is already `0`, so "fill with sign bit" and "fill with 0" are the same operation. The divergence only appears with negative operands, which is why exam/interview questions always test `>>>` on a negative number.
