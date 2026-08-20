@@ -1,5 +1,6 @@
 package com.oca.datetime;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -85,5 +86,37 @@ public class DateTimeAPI {
         System.out.println("Today + 3 months: " + today.plus(threeMonths));
         System.out.println("Today + 10 days: " + today.plus(tenDays));
         System.out.println("Today + custom (1y 6m 15d): " + today.plus(custom));
+
+
+        // 7. Comparing dates and times: isBefore, isAfter, isEqual
+        System.out.println("\n--- Comparing Dates/Times ---");
+        LocalDate date1 = LocalDate.of(2024, 6, 1);
+        LocalDate date2 = LocalDate.of(2024, 9, 15);
+
+        System.out.println(date1 + " isBefore " + date2 + ": " + date1.isBefore(date2));
+        System.out.println(date1 + " isAfter " + date2 + ": " + date1.isAfter(date2));
+        System.out.println(date1 + " isEqual " + date1 + ": " + date1.isEqual(date1));
+
+        // Note: equals() also works for LocalDate, but isEqual() is date-API specific
+        // and is preferred when comparing across different chronologies.
+
+
+        // 8. Duration - represents a time-based amount (hours, minutes, seconds)
+        // Duration is the time-based counterpart to Period (which is date-based).
+        System.out.println("\n--- Duration ---");
+        LocalTime startTime = LocalTime.of(9, 0, 0);
+        LocalTime endTime = LocalTime.of(17, 30, 0);
+
+        // Duration.between calculates the difference between two time-based objects
+        Duration workDay = Duration.between(startTime, endTime);
+        System.out.println("Duration between " + startTime + " and " + endTime + ": " + workDay);
+        System.out.println("  Hours: " + workDay.toHours() + ", Minutes: " + workDay.toMinutes());
+
+        // Creating durations with factory methods
+        Duration twoHours = Duration.ofHours(2);
+        Duration thirtyMinutes = Duration.ofMinutes(30);
+
+        System.out.println("Start time + 2 hours: " + startTime.plus(twoHours));
+        System.out.println("Start time + 30 minutes: " + startTime.plus(thirtyMinutes));
     }
 }
