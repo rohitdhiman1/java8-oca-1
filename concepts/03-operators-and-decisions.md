@@ -78,6 +78,33 @@ short s = 10;
 s += 1;          // COMPILES: equivalent to s = (short)(s + 1)
 ```
 
+## Shift Operators
+
+> **Beyond 1Z0-808 scope** -- bitwise/shift operators are OCP-bonus material, not tested on the OCA exam. Included here for completeness; runnable companion: [BitwiseOperators.java](../com/ocp/operators/BitwiseOperators.java).
+
+`>>` and `>>>` both shift bits to the right -- the difference is entirely about **what fills the vacated leftmost bits**, and it only shows up on **negative numbers**.
+
+| Operator | Name | Fills leftmost bits with | Sign-aware? |
+|---|---|---|---|
+| `<<` | Left shift | `0` (always) | N/A -- same for positive/negative |
+| `>>` | Signed right shift | The **sign bit** (`0` for positive, `1` for negative) | Yes -- preserves sign |
+| `>>>` | Unsigned right shift | `0` (always, ignores sign) | No -- can turn negative into a large positive |
+
+```java
+int a = -8;
+// -8 in binary: 11111111 11111111 11111111 11111000
+
+a >> 1;    // 11111111 11111111 11111111 11111100 = -4
+           // leftmost bit refilled with the sign bit (1) -> stays negative
+
+a >>> 1;   // 01111111 11111111 11111111 11111100 = 2147483644
+           // leftmost bit refilled with 0 -> sign bit destroyed, becomes a huge positive number
+```
+
+For **positive** numbers, `>>` and `>>>` produce identical results -- the sign bit is already `0`, so "fill with sign bit" and "fill with 0" are the same operation. The divergence only appears with negative operands, which is why exam/interview questions always test `>>>` on a negative number.
+
+**Exam trap -- shift distance wraps around:** For `int`, the shift amount is taken **mod 32** (`shiftAmount & 0x1F`); for `long`, it's **mod 64**. So `x >>> 32` is a no-op (same as `x >>> 0`), not "shift everything out to zero" as many expect.
+
 ## Relational Operators
 
 ```java
