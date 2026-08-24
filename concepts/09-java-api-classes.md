@@ -259,6 +259,39 @@ Predicate<Integer> p = n -> n > x;   // valid -- x is effectively final
 // x = 20;                            // if this line existed, the lambda above would not compile
 ```
 
+### Lambda vs Anonymous Class
+
+Both can implement a functional interface, but they are not interchangeable.
+
+| Feature | Lambda | Anonymous Class |
+|---|---|---|
+| Provides implementation for | Functional interface's single abstract method (SAM) | Any interface or class, including a concrete superclass |
+| Creates its own `this` context | ❌ No | ✅ Yes |
+| `this` refers to | The enclosing object | The anonymous object itself |
+| Can capture local variables | ✅ Yes | ✅ Yes |
+| Captured locals must be effectively final | ✅ Yes | ✅ Yes |
+| Can define fields/methods | ❌ No | ✅ Yes |
+| Can extend a class | ❌ No | ✅ Yes |
+| Runtime representation/object | Yes -- a real object with its own synthetic class and identity | Yes -- a real object with a compiler-generated class name |
+| Main purpose | Concise behavior for a functional interface | One-off implementation, or extending a class by name |
+
+**Exam trap:** A lambda is still a real object at runtime, but the `this` keyword *inside* its body is not that object -- it's inherited from the enclosing scope. An anonymous class's `this` always refers to the anonymous instance itself.
+
+```java
+class Test {
+    void demonstrate() {
+        Runnable lambda = () -> System.out.println(this); // prints the enclosing Test instance
+        Runnable anon = new Runnable() {
+            public void run() {
+                System.out.println(this); // prints the anonymous Runnable instance
+            }
+        };
+    }
+}
+```
+
+See [`LambdaVsAnonymousClass.java`](../com/oca/lambdas/LambdaVsAnonymousClass.java) for a runnable demonstration of every row above.
+
 ---
 
 ## Source Code References
@@ -268,3 +301,4 @@ Predicate<Integer> p = n -> n > x;   // valid -- x is effectively final
 | String operations | [`StringHandling.java`](../com/oca/stringhandling/StringHandling.java) |
 | Date and Time API | [`DateTimeAPI.java`](../com/oca/datetime/DateTimeAPI.java) |
 | Lambdas and Functional Interfaces | [`LambdaAndFunctionalInterfaces.java`](../com/oca/lambdas/LambdaAndFunctionalInterfaces.java) |
+| Lambda vs Anonymous Class | [`LambdaVsAnonymousClass.java`](../com/oca/lambdas/LambdaVsAnonymousClass.java) |
