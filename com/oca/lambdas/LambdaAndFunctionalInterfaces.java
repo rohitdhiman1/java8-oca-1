@@ -2,6 +2,8 @@ package com.oca.lambdas;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -76,7 +78,33 @@ public class LambdaAndFunctionalInterfaces {
         System.out.println("List from Supplier: " + newList);
 
 
-        // 5. Method References (shorthand for lambdas that just call a single method)
+        // 5. Comparator<T>: Represents an ordering for objects of type T.
+        // Method: int compare(T o1, T o2) -- two arguments, unlike the other interfaces above.
+        // Comparable (compareTo) is the class's own "natural order"; Comparator lets you
+        // sort by an order the class doesn't define itself, without touching the class.
+        System.out.println("\n--- Comparator<T> ---");
+        List<String> fruits = new ArrayList<>(Arrays.asList("banana", "apple", "cherry"));
+
+        // list.sort(Comparator) -- ascending, using String's own compareTo
+        fruits.sort((a, b) -> a.compareTo(b));
+        System.out.println("Sorted ascending: " + fruits);
+
+        // Descending: flip the arguments passed to compareTo
+        fruits.sort((a, b) -> b.compareTo(a));
+        System.out.println("Sorted descending: " + fruits);
+
+        // Collections.sort(list, comparator) -- same idea via the Collections utility class
+        List<String> moreFruits = new ArrayList<>(Arrays.asList("fig", "date", "elderberry"));
+        Collections.sort(moreFruits, (a, b) -> a.length() - b.length());
+        System.out.println("Sorted by length: " + moreFruits);
+
+        // Arrays.sort(array, comparator) -- only for Object arrays, not primitive arrays
+        String[] fruitArray = {"kiwi", "mango", "fig"};
+        Arrays.sort(fruitArray, (a, b) -> a.compareTo(b));
+        System.out.println("Array sorted: " + Arrays.toString(fruitArray));
+
+
+        // 6. Method References (shorthand for lambdas that just call a single method)
         System.out.println("\n--- Method References ---");
         List<String> colors = Arrays.asList("red", "green", "blue");
 
