@@ -23,6 +23,7 @@ public class DateTimeAPI {
 
         LocalTime now = LocalTime.now();
         System.out.println("Current Time: " + now);
+        System.out.println(today.getClass().getName());
 
         LocalDateTime currentDateTime = LocalDateTime.now();
         System.out.println("Current Date and Time: " + currentDateTime);
@@ -30,6 +31,14 @@ public class DateTimeAPI {
         // Creating a specific date
         LocalDate specificDate = LocalDate.of(2024, Month.DECEMBER, 25);
         System.out.println("Specific Date: " + specificDate);
+
+
+
+
+
+
+
+
 
 
         // 2. Getting information from date/time objects
@@ -118,5 +127,7 @@ public class DateTimeAPI {
 
         System.out.println("Start time + 2 hours: " + startTime.plus(twoHours));
         System.out.println("Start time + 30 minutes: " + startTime.plus(thirtyMinutes));
+
+
     }
 }
