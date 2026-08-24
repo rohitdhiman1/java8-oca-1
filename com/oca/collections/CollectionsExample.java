@@ -69,5 +69,7 @@ public class CollectionsExample {
         for (Map.Entry<String, Integer> entry : cityPopulations.entrySet()) {
             System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
         }
+
+        
     }
 }
