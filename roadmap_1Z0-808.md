@@ -147,9 +147,12 @@ This roadmap stitches together all concepts, source code, and mock exams in a st
   - Period, Duration, DateTimeFormatter
   - Lambda syntax, functional interfaces
   - Predicate, Consumer, Supplier, Function
+  - Comparator (sorting with `list.sort()`, `Collections.sort()`, `Arrays.sort()`) vs Comparable
+  - Lambda vs Anonymous Class (`this` context, captured variables, extra fields/methods, extending a class)
 - **Code Lab:**
   - [DateTimeAPI.java](com/oca/datetime/DateTimeAPI.java) - Java 8 Date/Time API
   - [LambdaAndFunctionalInterfaces.java](com/oca/lambdas/LambdaAndFunctionalInterfaces.java) - Lambdas and functional interfaces
+  - [LambdaVsAnonymousClass.java](com/oca/lambdas/LambdaVsAnonymousClass.java) - Lambda vs anonymous class, side by side
 
 ---
 
@@ -208,6 +211,7 @@ This roadmap stitches together all concepts, source code, and mock exams in a st
 | `exceptions` | [CustomException.java](com/oca/exceptions/CustomException.java) | Custom exceptions |
 | `datetime` | [DateTimeAPI.java](com/oca/datetime/DateTimeAPI.java) | Java 8 Date/Time |
 | `lambdas` | [LambdaAndFunctionalInterfaces.java](com/oca/lambdas/LambdaAndFunctionalInterfaces.java) | Lambdas |
+| `lambdas` | [LambdaVsAnonymousClass.java](com/oca/lambdas/LambdaVsAnonymousClass.java) | Lambda vs anonymous class (`this`, capture, extra members) |
 
 ### OCP (1Z0-809) - Beyond Exam Scope (Bonus)
 
