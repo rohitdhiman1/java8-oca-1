@@ -153,6 +153,7 @@ This roadmap stitches together all concepts, source code, and mock exams in a st
   - [DateTimeAPI.java](com/oca/datetime/DateTimeAPI.java) - Java 8 Date/Time API
   - [LambdaAndFunctionalInterfaces.java](com/oca/lambdas/LambdaAndFunctionalInterfaces.java) - Lambdas and functional interfaces
   - [LambdaVsAnonymousClass.java](com/oca/lambdas/LambdaVsAnonymousClass.java) - Lambda vs anonymous class, side by side
+- **Cheat Sheet:** [Java Lambdas Quick Reference](lambdas-cheatsheet.md) - Lambda syntax, target typing, the four core functional interfaces, lambda vs anonymous class, variable capture rules, and method references
 
 ---
 
@@ -228,6 +229,7 @@ This roadmap stitches together all concepts, source code, and mock exams in a st
 ### Interview Prep (Bonus)
 
 - [Collections Cheat Sheet](collections-cheatsheet.md) - Quick-revision reference for HashMap, HashSet, ArrayList, Stack, ArrayDeque, PriorityQueue, TreeMap, StringBuilder, Arrays/Collections utilities - with the runnable companion above
+- [Java Lambdas Quick Reference](lambdas-cheatsheet.md) - Quick-revision reference for lambda syntax, target typing, functional interfaces, lambda vs anonymous class, and method references - with the runnable companions above
 
 ---
 

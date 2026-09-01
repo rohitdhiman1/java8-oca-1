@@ -1,5 +1,7 @@
 package com.oca.lambdas;
 
+import java.util.HashMap;
+
 /**
  * Demonstrates the differences between a Lambda expression and an Anonymous Class
  * that implement the same functional interface.
