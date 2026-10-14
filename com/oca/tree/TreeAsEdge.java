@@ -14,7 +14,7 @@ class TreeAsEdge {
     // 1. Build the adjacency list. Nodes are 0..n-1, where n = edges.length + 1.
     List<List<Integer>> buildAdj(int[][] edges) {
         List<List<Integer>> adj = new ArrayList<>();
-        for(int i=0; i < edges.length+1 ; i++) adj.add(new ArrayList<>());
+        for(int i=0; i < edges.length +1 ; i++) adj.add(new ArrayList<>());
         for(int[] e : edges){
             adj.get(e[0]).add(e[1]);
             adj.get(e[1]).add(e[0]);
@@ -22,21 +22,63 @@ class TreeAsEdge {
         return adj;
     }
 
+    private void dfs(int node, int parent, List<Integer> list, List<List<Integer>> adj){
+        list.add(node);
+        for(Integer neighbour : adj.get(node)){
+            if(neighbour == parent) continue;
+            dfs(neighbour, node, list, adj);
+        }
+    }
+
     // 2. Recursive DFS. Return the nodes in the order you first visit them.
     List<Integer> dfsOrderRecursive(List<List<Integer>> adj) {
-        return null; // TODO
+        List<Integer> list = new ArrayList<>();
+        dfs(0, -1, list, adj);
+        return list;
     }
 
     
 
     // 3. Iterative DFS with an explicit stack. Any valid DFS order is accepted.
     List<Integer> dfsOrderIterative(List<List<Integer>> adj) {
-        return null; // TODO
+        boolean[] visited = new boolean[adj.size()];
+        Deque<Integer> stack = new ArrayDeque<>();
+        List<Integer> returnList = new ArrayList<>();
+        visited[0] = true;
+        stack.push(0);
+
+        while(!stack.isEmpty()){
+            int current = stack.pop();
+            returnList.add(current);
+            for(Integer neighbour : adj.get(current)){
+                if(visited[neighbour]) continue;
+                stack.push(neighbour);
+                visited[neighbour] = true;
+            }
+        }
+
+        return returnList;
     }
 
     // 4. BFS. Return the nodes in the order they leave the queue.
     List<Integer> bfsOrder(List<List<Integer>> adj) {
-        return null; // TODO
+        Deque<Integer> q = new ArrayDeque<>();
+        boolean[] visited = new boolean[adj.size()];
+        List<Integer> list = new ArrayList<>();
+        q.offer(0);
+        visited[0] = true;
+
+        while(!q.isEmpty()){
+            int current = q.poll();
+            list.add(current);
+            for(int neighbour : adj.get(current)){
+                if(visited[neighbour]) continue;
+                q.offer(neighbour);
+                visited[neighbour] = true;
+            }
+        }
+
+        return list;
     }
 
     // 5. Bottom-up recursive DFS: size of the subtree rooted at every node.
