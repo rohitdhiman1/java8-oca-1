@@ -97,4 +97,41 @@ Basic thread creation and synchronization.
 | 7.2 | **Concurrency (synchronized)** | [`com/ocp/concurrency/ConcurrencyExample.java`](./com/ocp/concurrency/ConcurrencyExample.java) |
 
 ---
+
+## Practice Drills
+
+### Lambdas Drill
+
+[`com/ocp/lambdas/LambdaDrill.java`](./com/ocp/lambdas/LambdaDrill.java) builds muscle memory for the everyday collection APIs that take a lambda. It is a fill-in-the-blanks file with its own test harness, meant to be rewritten from memory every day.
+
+**How to use it**
+
+1. Open [`LambdaDrill.java`](./com/ocp/lambdas/LambdaDrill.java). Everything above the `TEST HARNESS` banner is the drill area; each method returns `null` until you write it.
+2. Implement a method using the API named in its comment, passing a lambda you write yourself.
+3. Click **Run** above `main`. A results table shows each exercise as `PASS n/n`, `FAIL n/n` or `skip` (not written yet), followed by the failing cases and what went wrong.
+4. Once everything passes, clear the method bodies back to `return null; // TODO` and repeat tomorrow.
+
+**Rules:** no streams, no method references, and no ready-made comparators (`Comparator.comparing`, `Collections.reverseOrder`, ...). The point is to write the lambda by hand. The results table deliberately names only the API, not the functional interface it takes; recalling that is part of the drill.
+
+| # | Exercise | API to use |
+|---|---|---|
+| 1 | `sortIntervals`: start ascending, end descending on ties | `Arrays.sort` |
+| 2 | `sortDescending` (`Integer[]`) | `Arrays.sort` |
+| 3 | `sortByLengthThenAlpha` | `List.sort` |
+| 4 | `keepInRange` | `removeIf` |
+| 5 | `totalLength` | `Iterable.forEach` |
+| 6 | `invert`: swap keys and values | `Map.forEach` |
+| 7 | `buildGraph`: undirected adjacency map | `computeIfAbsent` |
+| 8 | `groupAnagrams` | `computeIfAbsent` |
+| 9 | `useOne`: decrement a count, drop the key at 0 | `computeIfPresent` |
+| 10 | `applyRaises` | `Map.replaceAll` |
+| 11 | `displayName` | `Optional.orElseGet` |
+
+Some test cases are traps on purpose: comparators written as `a - b` overflow on extreme values, a lambda cannot update a local `int`, returning `null` from `computeIfPresent` removes the key, and `orElse` (unlike `orElseGet`) runs its default even when a value is present.
+
+> **Needs JDK 11+.** The harness uses `List.of`, `Map.of` and `String.repeat`; the drill methods themselves only need Java 8 APIs.
+
+For the theory behind these rules, see [`lambdas-cheatsheet.md`](./lambdas-cheatsheet.md).
+
+---
 Happy Revising!
