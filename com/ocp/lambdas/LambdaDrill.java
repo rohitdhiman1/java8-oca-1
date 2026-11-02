@@ -2,6 +2,7 @@ package com.ocp.lambdas;
 
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.HashMap;
 
 class LambdaDrill {
 
@@ -13,64 +14,126 @@ class LambdaDrill {
     //  A method that returns null shows up as skip in the test output.
     // =====================================================================
 
-    // 1. Arrays.sort: start ascending; equal starts -> end DESCENDING.
+    // 1. Arrays.sort: each row is one interval {start, end}, i.e. row[0] = start,
+    //    row[1] = end (n rows x 2 columns). Sort the rows by:
+    //      - row[0] smallest first;
+    //      - if two rows have the same row[0], the one with the LARGER row[1] comes first.
+    //    e.g. {{3,4},{1,2},{1,5},{1,3}} -> {{1,5},{1,3},{1,2},{3,4}}
     //    Sort in place and return the same array.
     int[][] sortIntervals(int[][] intervals) {
         return null; // TODO
     }
 
-    // 2. Arrays.sort: largest first. Sort in place and return the same array.
+    // 2. Arrays.sort
+    //    Input : an Integer[] array (Integer objects, not int primitives).
+    //    Task  : sort it from LARGEST to SMALLEST.
+    //    Return: the same array, after sorting it in place.
+    //    e.g. {3, 1, 2} -> {3, 2, 1}
+    //    Heads-up: the test includes Integer.MAX_VALUE and Integer.MIN_VALUE.
     Integer[] sortDescending(Integer[] nums) {
         return null; // TODO
     }
 
-    // 3. List.sort: shortest first; equal lengths -> alphabetical.
-    //    Sort in place and return the same list.
+    // 3. List.sort
+    //    Input : a list of words.
+    //    Task  : sort by word length, SHORTEST first.
+    //            If two words have the same length, sort those two alphabetically (A -> Z).
+    //    Return: the same list, after sorting it in place.
+    //    e.g. ["pear", "fig", "apple", "date"] -> ["fig", "date", "pear", "apple"]
+    //         ("date" and "pear" are both 4 letters, so "date" comes first alphabetically)
     List<String> sortByLengthThenAlpha(List<String> words) {
         return null; // TODO
     }
 
-    // 4. removeIf: keep only values in [lo, hi] (inclusive). Return the same list.
+    // 4. removeIf
+    //    Input : a list of numbers, and two bounds lo and hi.
+    //    Task  : remove every number that is smaller than lo OR bigger than hi.
+    //            Numbers equal to lo or hi STAY in the list.
+    //    Return: the same list, after removing from it.
+    //    e.g. nums = [5, -1, 10, 3, 7, 0], lo = 0, hi = 7 -> [5, 3, 7, 0]
     List<Integer> keepInRange(List<Integer> nums, int lo, int hi) {
         return null; // TODO
     }
 
-    // 5. Iterable.forEach: total number of characters across all words.
+    // 5. Iterable.forEach (call words.forEach(...), not a for loop)
+    //    Input : a list of words.
+    //    Task  : add up the length of every word.
+    //    Return: the total (0 for an empty list).
+    //    e.g. ["ab", "cde", ""] -> 2 + 3 + 0 = 5
+    //    Heads-up: adding to a local int variable inside the lambda will not compile.
+    //              Work out why, and find a way around it.
     Integer totalLength(List<String> words) {
         return null; // TODO
     }
 
-    // 6. Map.forEach: swap keys and values (values are unique). Return a new map.
+    // 6. Map.forEach (call map.forEach(...))
+    //    Input : a map like {"a"=1, "b"=2}. No two keys share the same value.
+    //    Task  : build a NEW map where every key becomes a value and every value becomes a key.
+    //    Return: the new map (leave the input map alone).
+    //    e.g. {"a"=1, "b"=2, "c"=3} -> {1="a", 2="b", 3="c"}
     Map<Integer, String> invert(Map<String, Integer> map) {
         return null; // TODO
     }
 
-    // 7. computeIfAbsent: undirected adjacency map. Neighbors in edge order.
+    // 7. computeIfAbsent
+    //    Input : edges of a graph. Each row is one edge {u, v}: row[0] = u, row[1] = v.
+    //            Edges are two-way: u is connected to v AND v is connected to u.
+    //    Task  : build a map from each node to the list of nodes it is connected to.
+    //            Add neighbours in the same order the edges appear in the input.
+    //    Return: the new map (no edges -> empty map).
+    //    e.g. {{0,1}, {0,2}, {1,3}} -> {0=[1, 2], 1=[0, 3], 2=[0], 3=[1]}
+    //    Use computeIfAbsent so a node's list is created the first time you see that node.
     Map<Integer, List<Integer>> buildGraph(int[][] edges) {
         return null; // TODO
     }
 
-    // 8. computeIfAbsent: group anagrams, keyed by the word's letters sorted
-    //    ("eat" -> "aet"). Words inside a group keep their input order.
+    // 8. computeIfAbsent
+    //    Input : a list of words.
+    //    Task  : put words made of the same letters (anagrams) in the same group.
+    //            Each group's key is the word's letters sorted A -> Z: "eat" -> "aet".
+    //            "eat", "tea" and "ate" all give "aet", so they share one group.
+    //            Inside a group, keep the words in the order they appear in the input.
+    //    Return: a new map from key -> list of words.
+    //    e.g. ["eat", "tea", "tan", "ate", "nat", "bat"]
+    //         -> {"aet"=["eat", "tea", "ate"], "ant"=["tan", "nat"], "abt"=["bat"]}
     Map<String, List<String>> groupAnagrams(List<String> words) {
         return null; // TODO
     }
 
-    // 9. computeIfPresent: one c was used up, so decrement its count.
-    //    When a count reaches 0 the key must disappear. If c is absent, change nothing.
-    //    Return the same map.
+    // 9. computeIfPresent
+    //    Input : a map from letter -> how many of that letter we have, plus one letter c.
+    //    Task  : we just used up one c, so lower c's count by 1.
+    //            - If the count drops to 0, remove c from the map completely
+    //              (the key must be gone, not left behind as c=0).
+    //            - If c is not in the map at all, change nothing.
+    //    Return: the same map, after changing it.
+    //    e.g. {a=2, b=1}, c='a' -> {a=1, b=1}
+    //         {a=2, b=1}, c='b' -> {a=2}
+    //         {a=2, b=1}, c='z' -> {a=2, b=1}
+    //    Hint: look up what computeIfPresent does when your lambda returns null.
     Map<Character, Integer> useOne(Map<Character, Integer> counts, char c) {
         return null; // TODO
     }
 
-    // 10. Map.replaceAll: promoted people get +10%, everyone else +2%.
-    //     Integer math: salary * 110 / 100 and salary * 102 / 100. Return the same map.
+    // 10. Map.replaceAll
+    //     Input : a map from name -> salary, and a set of names who got promoted.
+    //     Task  : give everyone a raise by replacing each salary with a new one:
+    //             - promoted names (in the set):  salary * 110 / 100   (+10%)
+    //             - everyone else:                salary * 102 / 100   (+2%)
+    //     Return: the same map, after changing it.
+    //     e.g. {"ann"=1000, "bob"=2000}, promoted = {"bob"} -> {"ann"=1020, "bob"=2200}
     Map<String, Integer> applyRaises(Map<String, Integer> salaries, Set<String> promoted) {
         return null; // TODO
     }
 
-    // 11. Optional.orElseGet: the nickname if present, else defaultName(userId).
-    //     defaultName is "expensive" and must only run when the nickname is empty.
+    // 11. Optional.orElseGet
+    //     Input : an Optional that may or may not hold a nickname, and a user id.
+    //     Task  : if there is a nickname, return it.
+    //             If the Optional is empty, return defaultName(userId) (the helper below).
+    //     Pretend defaultName is slow and costly: it must ONLY be called when the
+    //     Optional is empty. The test counts how many times it runs.
+    //     e.g. Optional.of("ro"), "42" -> "ro"       (defaultName never called)
+    //          Optional.empty(),  "42" -> "user-42"  (defaultName called once)
     String displayName(Optional<String> nickname, String userId) {
         return null; // TODO
     }
@@ -111,7 +174,16 @@ class LambdaDrill {
                         new int[][]{{0, 1}, {1, 5}, {1, 3}, {1, 2}})),
                 c("extreme values (does a - b overflow?)", () -> expect(
                         d.sortIntervals(new int[][]{{MAX, 0}, {MIN, 0}, {0, MIN}, {0, MAX}}),
-                        new int[][]{{MIN, 0}, {0, MAX}, {0, MIN}, {MAX, 0}}))));
+                        new int[][]{{MIN, 0}, {0, MAX}, {0, MIN}, {MAX, 0}})),
+                c("1000 rows with duplicates (equal rows must compare as 0)", () -> {
+                    Random rnd = new Random(42);
+                    int[][] in = new int[1000][];
+                    for (int i = 0; i < in.length; i++) in[i] = new int[]{rnd.nextInt(3), rnd.nextInt(3)};
+                    int[][] want = new int[in.length][];
+                    for (int i = 0; i < in.length; i++) want[i] = in[i].clone();
+                    Arrays.sort(want, (a, b) -> a[0] != b[0] ? Integer.compare(a[0], b[0]) : Integer.compare(b[1], a[1]));
+                    return expect(d.sortIntervals(in), want);
+                })));
 
         rows.add(run("2", "sortDescending", "Arrays.sort",
                 c("basic", () -> expect(d.sortDescending(new Integer[]{3, 1, 2}), new Integer[]{3, 2, 1})),
